@@ -45,8 +45,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <ginkgo/core/base/exception_helpers.hpp>
 #include <ginkgo/core/base/executor.hpp>
 #include <ginkgo/core/base/lin_op.hpp>
-#include <ginkgo/core/base/mtx_io.hpp>
-#include <ginkgo/core/base/range_accessors.hpp>
 #include <ginkgo/core/base/types.hpp>
 #include <ginkgo/core/base/utils.hpp>
 
@@ -171,9 +169,9 @@ protected:
         }
     }
 
-    void apply_impl(const LinOp *b, LinOp *x) const
+    void apply_impl(const LinOp *in, LinOp *out) const
     {
-        auto perm = as<Permutable<index_type>>(b);
+        auto perm = as<Permutable<index_type>>(in);
         std::unique_ptr<gko::LinOp> tmp{};
         if (!permute_inverse_) {
             if (permute_row_) {
@@ -190,13 +188,17 @@ protected:
                 tmp = perm->inverse_column_permute(&permutation_);
             }
         }
-        x->copy_from(std::move(tmp));
+        out->copy_from(std::move(tmp));
     }
 
 
-    void apply_impl(const LinOp *alpha, const LinOp *b, const LinOp *beta,
-                    LinOp *x) const
-    {}
+    void apply_impl(const LinOp *alpha, const LinOp *in, const LinOp *beta,
+                    LinOp *out) const
+    {
+        // Ignores alpha and beta and just performs a normal permutation as an
+        // advanced apply does not really make sense here.
+        this->apply_impl(in, out);
+    }
 
 
 private:
