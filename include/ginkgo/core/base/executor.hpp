@@ -42,9 +42,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 #include <ginkgo/config.hpp>
-#include <ginkgo/core/base/machine_config.hpp>
 #include <ginkgo/core/base/exception.hpp>
 #include <ginkgo/core/base/exception_helpers.hpp>
+#include <ginkgo/core/base/machine_config.hpp>
 #include <ginkgo/core/base/memory_space.hpp>
 #include <ginkgo/core/base/types.hpp>
 #include <ginkgo/core/log/logger.hpp>
@@ -931,7 +931,10 @@ protected:
     {
         auto check_cuda_mem_space =
             dynamic_cast<CudaMemorySpace *>(mem_space.get());
-        if (check_cuda_mem_space == nullptr) {
+        auto check_cuda_uvm_mem_space =
+            dynamic_cast<CudaUVMSpace *>(mem_space.get());
+        if (check_cuda_mem_space == nullptr &&
+            check_cuda_uvm_mem_space == nullptr) {
             return false;
         }
         return true;
