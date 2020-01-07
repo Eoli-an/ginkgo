@@ -77,7 +77,8 @@ __device__ void spmv_kernel(
             }
             __syncthreads();
             ValueType temp = zero<ValueType>();
-            for (size_type idx = worker_id * num_thread_per_worker + idx_in_worker;
+            for (size_type idx =
+                     worker_id * num_thread_per_worker + idx_in_worker;
                  idx < num_stored_elements_per_row; idx += step_size) {
                 const auto ind = x + idx * stride;
                 const auto col_idx = col[ind];

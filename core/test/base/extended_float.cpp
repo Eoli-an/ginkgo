@@ -96,7 +96,8 @@ protected:
 };
 
 
-class FloatToHalf : public ExtendedFloatTestBase {};
+class FloatToHalf : public ExtendedFloatTestBase {
+};
 
 
 // clang-format does terrible formatting of string literal concatenation
@@ -203,7 +204,8 @@ TEST_F(FloatToHalf, TruncatesLargeNumber)
 // clang-format on
 
 
-class HalfToFloat : public ExtendedFloatTestBase {};
+class HalfToFloat : public ExtendedFloatTestBase {
+};
 
 
 // clang-format off
@@ -276,7 +278,8 @@ TEST_F(HalfToFloat, ExtendsLargeNumber)
 // clang-format on
 
 
-class TruncatedDouble : public ExtendedFloatTestBase {};
+class TruncatedDouble : public ExtendedFloatTestBase {
+};
 
 
 // clang-format off
@@ -364,7 +367,8 @@ TEST_F(TruncatedDouble, AssemblesDoubleFromQuarters)
 // clang-format on
 
 
-class TruncatedFloat : public ExtendedFloatTestBase {};
+class TruncatedFloat : public ExtendedFloatTestBase {
+};
 
 
 // clang-format off

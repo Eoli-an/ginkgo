@@ -64,7 +64,8 @@ namespace detail {
 
 
 template <std::size_t, typename = void>
-struct uint_of_impl {};
+struct uint_of_impl {
+};
 
 template <std::size_t Bits>
 struct uint_of_impl<Bits, xstd::void_t<xstd::enable_if_t<(Bits <= 16)>>> {
@@ -87,7 +88,8 @@ using uint_of = typename uint_of_impl<Bits>::type;
 
 
 template <typename T>
-struct basic_float_traits {};
+struct basic_float_traits {
+};
 
 template <>
 struct basic_float_traits<float16> {

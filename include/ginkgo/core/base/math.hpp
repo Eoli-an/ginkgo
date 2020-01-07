@@ -133,11 +133,13 @@ struct remove_complex_impl<std::complex<T>> {
 
 
 template <typename T>
-struct is_complex_impl : public std::integral_constant<bool, false> {};
+struct is_complex_impl : public std::integral_constant<bool, false> {
+};
 
 template <typename T>
 struct is_complex_impl<std::complex<T>>
-    : public std::integral_constant<bool, true> {};
+    : public std::integral_constant<bool, true> {
+};
 
 
 }  // namespace detail

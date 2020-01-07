@@ -47,7 +47,8 @@ struct Base {
 };
 
 
-struct Derived : Base {};
+struct Derived : Base {
+};
 
 
 struct NonRelated {

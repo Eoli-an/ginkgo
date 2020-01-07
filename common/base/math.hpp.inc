@@ -41,7 +41,8 @@ struct remove_complex_impl<thrust::complex<T>> {
 
 template <typename T>
 struct is_complex_impl<thrust::complex<T>>
-    : public std::integral_constant<bool, true> {};
+    : public std::integral_constant<bool, true> {
+};
 
 
 template <typename T>
@@ -74,7 +75,8 @@ namespace detail {
  * point type. Uses specialization to implement different types.
  */
 template <typename T>
-struct mask_creator {};
+struct mask_creator {
+};
 
 template <>
 struct mask_creator<float> {

@@ -83,13 +83,16 @@ inline int64 not_implemented(Args &&...)
 
 
 template <typename ValueType>
-struct is_supported : std::false_type {};
+struct is_supported : std::false_type {
+};
 
 template <>
-struct is_supported<float> : std::true_type {};
+struct is_supported<float> : std::true_type {
+};
 
 template <>
-struct is_supported<double> : std::true_type {};
+struct is_supported<double> : std::true_type {
+};
 
 // hipblas supports part of complex function version is >= 0.19, but the version
 // is not set now.

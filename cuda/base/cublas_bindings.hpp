@@ -83,19 +83,24 @@ inline int64 not_implemented(Args &&...)
 
 
 template <typename ValueType>
-struct is_supported : std::false_type {};
+struct is_supported : std::false_type {
+};
 
 template <>
-struct is_supported<float> : std::true_type {};
+struct is_supported<float> : std::true_type {
+};
 
 template <>
-struct is_supported<double> : std::true_type {};
+struct is_supported<double> : std::true_type {
+};
 
 template <>
-struct is_supported<std::complex<float>> : std::true_type {};
+struct is_supported<std::complex<float>> : std::true_type {
+};
 
 template <>
-struct is_supported<std::complex<double>> : std::true_type {};
+struct is_supported<std::complex<double>> : std::true_type {
+};
 
 
 #define GKO_BIND_CUBLAS_GEMM(ValueType, CublasName)                            \

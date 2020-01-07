@@ -49,6 +49,15 @@ namespace hip {
 
 
 struct config {
+/**
+ * The type containing a bitmask over all lanes of a warp.
+ */
+#if GINKGO_HIP_PLATFORM_HCC
+    using lane_mask_type = uint64;
+#else  // GINKGO_HIP_PLATFORM_NVCC
+    using lane_mask_type = uint32;
+#endif
+
     /**
      * The type containing a bitmask over all lanes of a warp.
      */

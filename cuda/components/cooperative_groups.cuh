@@ -134,15 +134,18 @@ namespace detail {
 
 
 template <typename T>
-struct is_group_impl : std::false_type {};
+struct is_group_impl : std::false_type {
+};
 
 
 template <typename T>
-struct is_synchronizable_group_impl : std::false_type {};
+struct is_synchronizable_group_impl : std::false_type {
+};
 
 
 template <typename T>
-struct is_communicator_group_impl : std::true_type {};
+struct is_communicator_group_impl : std::true_type {
+};
 
 }  // namespace detail
 
@@ -196,7 +199,8 @@ using cooperative_groups::thread_group;
 
 namespace detail {
 template <>
-struct is_group_impl<thread_group> : std::true_type {};
+struct is_group_impl<thread_group> : std::true_type {
+};
 }  // namespace detail
 
 
@@ -255,7 +259,8 @@ private:
 
 namespace detail {
 template <>
-struct is_group_impl<grid_group> : std::true_type {};
+struct is_group_impl<grid_group> : std::true_type {
+};
 }  // namespace detail
 
 
@@ -272,9 +277,11 @@ using cooperative_groups::thread_block;
 
 namespace detail {
 template <>
-struct is_group_impl<thread_block> : std::true_type {};
+struct is_group_impl<thread_block> : std::true_type {
+};
 template <>
-struct is_synchronizable_group_impl<thread_block> : std::true_type {};
+struct is_synchronizable_group_impl<thread_block> : std::true_type {
+};
 }  // namespace detail
 
 
@@ -300,9 +307,11 @@ using cooperative_groups::coalesced_group;
 
 namespace detail {
 template <>
-struct is_group_impl<coalesced_group> : std::true_type {};
+struct is_group_impl<coalesced_group> : std::true_type {
+};
 template <>
-struct is_synchronizable_group_impl<coalesced_group> : std::true_type {};
+struct is_synchronizable_group_impl<coalesced_group> : std::true_type {
+};
 // some bugs, and incomplete interface, so not a communicator group for now
 // template <>
 // struct is_communicator_group_impl<coalesced_group> : std::true_type {};
@@ -394,19 +403,23 @@ struct thread_block_tile : detail::enable_extended_shuffle<
 
 namespace detail {
 template <size_type Size>
-struct is_group_impl<thread_block_tile<Size>> : std::true_type {};
+struct is_group_impl<thread_block_tile<Size>> : std::true_type {
+};
 template <size_type Size>
 struct is_synchronizable_group_impl<thread_block_tile<Size>> : std::true_type {
 };
 template <size_type Size>
-struct is_communicator_group_impl<thread_block_tile<Size>> : std::true_type {};
+struct is_communicator_group_impl<thread_block_tile<Size>> : std::true_type {
+};
 // make sure the original CUDA group is recognized whenever possible
 template <size_type Size>
 struct is_group_impl<cooperative_groups::thread_block_tile<Size>>
-    : std::true_type {};
+    : std::true_type {
+};
 template <size_type Size>
 struct is_synchronizable_group_impl<cooperative_groups::thread_block_tile<Size>>
-    : std::true_type {};
+    : std::true_type {
+};
 }  // namespace detail
 
 

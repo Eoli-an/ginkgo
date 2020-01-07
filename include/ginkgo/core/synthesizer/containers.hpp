@@ -44,15 +44,18 @@ namespace syn {
 
 
 template <typename T, T... Values>
-struct value_list {};
+struct value_list {
+};
 
 
 template <typename... Types>
-struct type_list {};
+struct type_list {
+};
 
 
 template <int Start, int End, int Step = 1>
-struct range {};
+struct range {
+};
 
 
 namespace detail {

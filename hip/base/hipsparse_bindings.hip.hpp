@@ -71,13 +71,16 @@ inline int64 not_implemented(Args...)
 
 
 template <typename ValueType, typename IndexType>
-struct is_supported : std::false_type {};
+struct is_supported : std::false_type {
+};
 
 template <>
-struct is_supported<float, int32> : std::true_type {};
+struct is_supported<float, int32> : std::true_type {
+};
 
 template <>
-struct is_supported<double, int32> : std::true_type {};
+struct is_supported<double, int32> : std::true_type {
+};
 
 
 #define GKO_BIND_HIPSPARSE32_SPMV(ValueType, HipsparseName)                  \
