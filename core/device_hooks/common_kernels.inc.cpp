@@ -48,6 +48,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "core/solver/cgs_kernels.hpp"
 #include "core/solver/fcg_kernels.hpp"
 #include "core/solver/gmres_kernels.hpp"
+#include "core/solver/idr_kernels.hpp"
 #include "core/solver/ir_kernels.hpp"
 #include "core/solver/lower_trs_kernels.hpp"
 #include "core/solver/upper_trs_kernels.hpp"
@@ -212,6 +213,29 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_TYPE(GKO_DECLARE_CG_STEP_2_KERNEL);
 
 
 }  // namespace cg
+
+
+// TODO (script:idr): adapt this block as needed
+namespace idr {
+
+
+template <typename ValueType>
+GKO_DECLARE_IDR_INITIALIZE_KERNEL(ValueType)
+GKO_NOT_COMPILED(GKO_HOOK_MODULE);
+GKO_INSTANTIATE_FOR_EACH_VALUE_TYPE(GKO_DECLARE_IDR_INITIALIZE_KERNEL);
+
+template <typename ValueType>
+GKO_DECLARE_IDR_STEP_1_KERNEL(ValueType)
+GKO_NOT_COMPILED(GKO_HOOK_MODULE);
+GKO_INSTANTIATE_FOR_EACH_VALUE_TYPE(GKO_DECLARE_IDR_STEP_1_KERNEL);
+
+template <typename ValueType>
+GKO_DECLARE_IDR_STEP_2_KERNEL(ValueType)
+GKO_NOT_COMPILED(GKO_HOOK_MODULE);
+GKO_INSTANTIATE_FOR_EACH_VALUE_TYPE(GKO_DECLARE_IDR_STEP_2_KERNEL);
+
+
+}  // namespace idr
 
 
 // TODO (script): adapt this block as needed
