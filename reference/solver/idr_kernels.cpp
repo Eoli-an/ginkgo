@@ -53,13 +53,38 @@ namespace idr {
 template <typename ValueType>
 void initialize(std::shared_ptr<const ReferenceExecutor> exec,
                 const matrix::Dense<ValueType> *b, matrix::Dense<ValueType> *r,
-                matrix::Dense<ValueType> *z, matrix::Dense<ValueType> *p,
-                matrix::Dense<ValueType> *q, matrix::Dense<ValueType> *prev_rho,
-                matrix::Dense<ValueType> *rho,
-                Array<stopping_status> *stop_status) GKO_NOT_IMPLEMENTED;
-//{
+                matrix::Dense<ValueType> *r_norm,
+                matrix::Dense<ValueType> *b_norm, matrix::Dense<ValueType> *P,
+                matrix::Dense<ValueType> *Dr, matrix::Dense<ValueType> *Dx,
+                matrix::Dense<ValueType> *v, matrix::Dense<ValueType> *M,
+                matrix::Dense<ValueType> *m, matrix::Dense<ValueType> *c,
+                matrix::Dense<ValueType> *q, matrix::Dense<ValueType> *t,
+                matrix::Dense<ValueType> *dm,
+                Array<stopping_status> *stop_status)
+{
+    for (size_type j = 0; j < b->get_size()[1]; ++j) {
+        r_norm->at(j) = zero<ValueType>();
+        b_norm->at(j) = one<ValueType>();
+        stop_status->get_data()[j].reset();
+    }
+
+    for (size_type i = 0; i < b->get_size()[0]; ++i) {
+        for (size_type j = 0; j < b->get_size()[1]; ++j) {
+            r->at(i, j) = b->at(i, j);
+            v->at(i, j) = m->at(i, j) = c->at(i, j) = q->at(i, j) =
+                t->at(i, j) = dm->at(i, j) = zero<ValueType>();
+        }
+    }
+
+    for (size_type i = 0; i < P->get_size()[0]; ++i) {
+        for (size_type j = 0; j < P->get_size()[1]; ++j) {
+            P->at(i, j) = Dr->at(i, j) = Dx->at(i, j) = M->at(i, j) =
+                zero<ValueType>();
+        }
+    }
+}
 // TODO (script:idr): change the code imported from solver/cg if needed
-//    for (size_type j = 0; j < b->get_size()[1]; ++j) {
+//    for (sizeValueType j = 0; j < b->get_size()[1]; ++j) {
 //        rho->at(j) = zero<ValueType>();
 //        prev_rho->at(j) = one<ValueType>();
 //        stop_status->get_data()[j].reset();

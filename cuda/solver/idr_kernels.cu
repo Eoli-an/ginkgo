@@ -58,9 +58,13 @@ constexpr int default_block_size = 512;
 template <typename ValueType>
 void initialize(std::shared_ptr<const CudaExecutor> exec,
                 const matrix::Dense<ValueType> *b, matrix::Dense<ValueType> *r,
-                matrix::Dense<ValueType> *z, matrix::Dense<ValueType> *p,
-                matrix::Dense<ValueType> *q, matrix::Dense<ValueType> *prev_rho,
-                matrix::Dense<ValueType> *rho,
+                matrix::Dense<ValueType> *r_norm,
+                matrix::Dense<ValueType> *b_norm, matrix::Dense<ValueType> *P,
+                matrix::Dense<ValueType> *Dr, matrix::Dense<ValueType> *Dx,
+                matrix::Dense<ValueType> *v, matrix::Dense<ValueType> *M,
+                matrix::Dense<ValueType> *m, matrix::Dense<ValueType> *C,
+                matrix::Dense<ValueType> *q, matrix::Dense<ValueType> *t,
+                matrix::Dense<ValueType> *dm,
                 Array<stopping_status> *stop_status) GKO_NOT_IMPLEMENTED;
 //{
 // TODO (script:idr): change the code imported from solver/cg if needed

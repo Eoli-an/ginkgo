@@ -45,12 +45,16 @@ namespace kernels {
 namespace idr {
 
 
-#define GKO_DECLARE_IDR_INITIALIZE_KERNEL(_type)                             \
-    void initialize(std::shared_ptr<const DefaultExecutor> exec,             \
-                    const matrix::Dense<_type> *b, matrix::Dense<_type> *r,  \
-                    matrix::Dense<_type> *z, matrix::Dense<_type> *p,        \
-                    matrix::Dense<_type> *q, matrix::Dense<_type> *prev_rho, \
-                    matrix::Dense<_type> *rho,                               \
+#define GKO_DECLARE_IDR_INITIALIZE_KERNEL(_type)                            \
+    void initialize(std::shared_ptr<const DefaultExecutor> exec,            \
+                    const matrix::Dense<_type> *b, matrix::Dense<_type> *r, \
+                    matrix::Dense<_type> *r_norm,                           \
+                    matrix::Dense<_type> *b_norm, matrix::Dense<_type> *P,  \
+                    matrix::Dense<_type> *Dr, matrix::Dense<_type> *Dx,     \
+                    matrix::Dense<_type> *v, matrix::Dense<_type> *M,       \
+                    matrix::Dense<_type> *m, matrix::Dense<_type> *C,       \
+                    matrix::Dense<_type> *q, matrix::Dense<_type> *t,       \
+                    matrix::Dense<_type> *dm,                               \
                     Array<stopping_status> *stop_status)
 
 
